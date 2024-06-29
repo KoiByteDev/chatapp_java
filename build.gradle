@@ -11,21 +11,16 @@ repositories {
   mavenCentral()
 }
 
+application {
+  mainClass = 'com.example.chatapp_java.App'
+}
+
 javafx {
   version = '21'
   modules = ['javafx.controls', 'javafx.fxml']
 }
 
-application {
-  mainModule = 'com.example.chatapp_java'
-  mainClass = 'com.example.chatapp_java.HelloApplication'
-}
-
 dependencies {
   implementation 'org.openjfx:javafx-controls:21'
   implementation 'org.openjfx:javafx-fxml:21'
-}
-
-tasks.withType(JavaCompile) {
-  options.encoding = 'UTF-8'
 }
