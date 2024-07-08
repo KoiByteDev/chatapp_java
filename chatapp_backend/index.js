@@ -1,40 +1,71 @@
-const express = require('express');
-const WebSocket = require('ws');
-const http = require('http');
+import express from 'express';
+import { WebSocketServer } from 'ws';
+import http from 'http';
+import bcrypt from 'bcrypt';
 
-// Create a new Express application
 const app = express();
 
-// Create an HTTP server and WebSocket server
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const users = [];
+const messages = [];
 
-// Serve a simple HTML page (optional, for testing)
+const server = http.createServer(app);
+const wss = new WebSocketServer({ server });
+
 app.get('/', (req, res) => {
   res.send('WebSocket server is running');
 });
 
-// WebSocket connection handler
 wss.on('connection', (ws) => {
-  console.log('New client connected');
+  let currentUser = null;
 
-  ws.on('message', (message) => {
-    console.log(`Received message: ${message}`);
+  ws.on('message', async (message) => {
+    try {
+      message = message.toString();
+      console.log(`Received message: ${message}`);
+      const [action, username, password, email] = message.split(',');
 
-    // Broadcast the message to all connected clients
-    wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(message);
+      if (action === 'register') {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        users.push({ username, email, password: hashedPassword });
+        ws.send('Registro exitoso!');
+      } else if (action === 'login') {
+        const user = users.find(u => u.username === username);
+        if (user && await bcrypt.compare(password, user.password)) {
+          ws.send('Inicio de sesión exitoso!');
+        } else {
+          ws.send('Usuario o contraseña incorrectos');
+        }
+      } else if (action === 'join') {
+        currentUser = username;
+        ws.send(messages.join('\n'));
+        broadcast(`${username} se ha unido a la conversación`);
+      } else if (action === 'leave') {
+        broadcast(`${username} ha abandonado la conversación`);
+      } else {
+        messages.push(message);
+        broadcast(message);
       }
-    });
+    } catch (err) {
+      console.log(err.message);
+    }
   });
 
   ws.on('close', () => {
+    if (currentUser) {
+      broadcast(`${currentUser} ha abandonado la conversación`);
+    }
     console.log('Client disconnected');
   });
 });
 
-// Start the server
+const broadcast = (message) => {
+  wss.clients.forEach((client) => {
+    if (client.readyState === client.OPEN) {
+      client.send(message);
+    }
+  });
+};
+
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-
 <VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.chatapp_java.AuthController">
-  <TextField fx:id="usernameField" promptText="Username"/>
-  <PasswordField fx:id="passwordField" promptText="Password"/>
-  <Button fx:id="authButton" text="Login" onAction="#handleAuthAction"/>
-  <Text fx:id="switchAuthText" text="Don't have an account? Sign Up" style=" -fx-underline: true; -fx-fill: blue;" />
+  <TextField fx:id="emailField" promptText="Email" visible="false"/>
+  <TextField fx:id="usernameField" promptText="Nombre de usuario"/>
+  <PasswordField fx:id="passwordField" promptText="Contraseña"/>
+  <Button fx:id="authButton" text="Iniciar Sesion" onAction="#handleAuthAction"/>
+  <Text fx:id="switchAuthText" text="No tiene una cuenta? Crear Cuenta" onMouseClicked="#switchAuthMode" style=" -fx-underline: true; -fx-fill: blue;" />
+  <Label fx:id="errorLabel" textFill="red" visible="false"/>
 </VBox>
