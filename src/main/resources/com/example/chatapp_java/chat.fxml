@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.chatapp_java.ChatController">
-    <TextArea fx:id="chatArea" editable="false"/>
+    <TextArea fx:id="chatArea" editable="false" VBox.vgrow="ALWAYS"/>
+    <HBox>
+        <TextField fx:id="messageField" HBox.hgrow="ALWAYS"/>
+        <Button text="Send" onAction="#sendMessage"/>
+    </HBox>
 </VBox>
