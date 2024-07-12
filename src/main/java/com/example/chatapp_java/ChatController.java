@@ -79,7 +79,7 @@ public class ChatController {
         String message = messageField.getText();
         if (!message.isEmpty() && webSocketClient != null && webSocketClient.isOpen()) {
             String mensaje = username + ": " + message;
-            webSocketClient.send(mensaje);
+            webSocketClient.send("msg," + mensaje);
             Platform.runLater(() -> {
                 scrollPane.layout();
                 scrollPane.setVvalue(1.0);
