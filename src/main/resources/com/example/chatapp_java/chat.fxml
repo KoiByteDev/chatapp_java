@@ -5,24 +5,33 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox spacing="10" style="-fx-background-color: #0e1531; -fx-text-fill: #d3d3d3;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatapp_java.ChatController">
-    <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="300.0" prefWidth="600.0" style="-fx-background: #0e1531; -fx-background-color: #0e1531; -fx-prompt-text-fill: #d3d3d3;" VBox.vgrow="ALWAYS">
-        <VBox fx:id="messagesContainer" alignment="TOP_LEFT" prefHeight="33.0" prefWidth="598.0" spacing="10" style="-fx-padding: 10; -fx-border-color: #161d39; -fx-border-width: 1; -fx-background-color: #161d39; -fx-text-fill: #d3d3d3;" />
-    </ScrollPane>
-    <HBox alignment="BOTTOM_CENTER" prefHeight="36.0" prefWidth="600.0">
-        <TextField fx:id="messageField" prefHeight="25.0" prefWidth="300.0" promptText="Escribe tu mensaje aquí..." style="-fx-background-color: #161d39; -fx-text-fill: #d3d3d3;" HBox.hgrow="ALWAYS">
-         <HBox.margin>
-            <Insets bottom="8.0" left="10.0" />
-         </HBox.margin></TextField>
-        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="20.0" maxWidth="20.0" minHeight="50.0" minWidth="50.0" onAction="#sendMessage" prefHeight="27.0" prefWidth="48.0" style="-fx-background-color: #0e1531;" text="⮚" textFill="LIGHTGRAY">
-         <HBox.margin>
-            <Insets bottom="8.0" right="4.0" />
-         </HBox.margin>
-         <font>
-            <Font size="24.0" />
-         </font>
-         <padding>
-            <Insets top="20.0" />
-         </padding></Button>
-    </HBox>
-</VBox>
+<HBox spacing="0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatapp_java.ChatController" HBox.hgrow="ALWAYS">
+    <VBox spacing="10" alignment="TOP_CENTER" prefWidth="50" style="-fx-background-color: #0e1531;">
+        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="20.0" maxWidth="20.0" minHeight="50.0" minWidth="50.0" style="-fx-background-color: #0e1531;" text="+" textFill="LIGHTGRAY">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+    </VBox>
+    <VBox spacing="10" style="-fx-background-color: #0e1531; -fx-text-fill: #d3d3d3;" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="300.0" prefWidth="600.0" style="-fx-background: #0e1531; -fx-background-color: #0e1531; -fx-prompt-text-fill: #d3d3d3;" VBox.vgrow="ALWAYS">
+            <VBox fx:id="messagesContainer" alignment="TOP_LEFT" spacing="10" style="-fx-padding: 10; -fx-border-color: #161d39; -fx-border-width: 1; -fx-background-color: #161d39; -fx-text-fill: #d3d3d3;" VBox.vgrow="ALWAYS" />
+        </ScrollPane>
+        <HBox alignment="BOTTOM_CENTER" prefHeight="20.0" prefWidth="600.0">
+            <TextField fx:id="messageField" prefHeight="25.0" prefWidth="300.0" promptText="Escribe tu mensaje aquí..." style="-fx-background-color: #161d39; -fx-text-fill: #d3d3d3;" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets bottom="8.0" left="10.0" />
+            </HBox.margin></TextField>
+            <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="20.0" maxWidth="20.0" minHeight="50.0" minWidth="50.0" onAction="#sendMessage" prefHeight="27.0" prefWidth="48.0" style="-fx-background-color: #0e1531;" text="⮚" textFill="LIGHTGRAY">
+            <HBox.margin>
+                <Insets bottom="8.0" right="4.0" />
+            </HBox.margin>
+            <font>
+                <Font size="24.0" />
+            </font>
+            <padding>
+                <Insets top="20.0" />
+            </padding></Button>
+        </HBox>
+    </VBox>
+</HBox>

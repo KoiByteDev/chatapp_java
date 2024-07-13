@@ -73,11 +73,11 @@ wss.on("connection", (ws) => {
         case "join":
           currentUser = username;
           const messagesSnapshot = await getDocs(collection(db, "messages"));
-          let messages = "";
+          let messages = [];
           messagesSnapshot.forEach((doc) => {
             const messageArray = doc.data().messages;
             messageArray.forEach((msg) => {
-              messages += `${msg.time} - ${msg.message}\n`;
+              messages.push(`${msg.time} - ${msg.message}\n`);
             });
           });
           ws.send(messages);

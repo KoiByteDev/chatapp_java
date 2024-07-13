@@ -114,7 +114,7 @@ public class AuthController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("chat.fxml"));
             Stage stage = (Stage) authButton.getScene().getWindow();
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 854, 480);
             ChatController chatController = fxmlLoader.getController();
             chatController.setUsername(usernameField.getText());
             stage.setScene(scene);

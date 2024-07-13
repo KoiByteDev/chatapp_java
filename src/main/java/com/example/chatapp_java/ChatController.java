@@ -6,8 +6,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -46,13 +49,26 @@ public class ChatController {
                 }
 
                 @Override
-                public void onMessage(String message) {
+                public void onMessage(String messages) {
                     Platform.runLater(() -> {
-                        Text text = new Text(message);
-                        text.setStyle("-fx-fill: white;");
-                        messagesContainer.getChildren().add(text);
-                        scrollPane.layout();
-                        scrollPane.setVvalue(1.0);
+
+                        String[] messageArray = messages.split("\n");
+
+                        for (String message : messageArray) {
+                            HBox messageBox = new HBox();
+                            messageBox.setStyle("-fx-background-color: #0e1531; -fx-padding: 10; -fx-border-color: #0e1531; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-margin: 2; -fx-max-width: 100px;");
+
+                            Text text = new Text(message);
+                            text.setStyle("-fx-fill: white;");
+
+                            messageBox.getChildren().add(text);
+                            messageBox.setMaxWidth(Double.MAX_VALUE);
+                            messageBox.setMinHeight(Region.USE_PREF_SIZE);
+
+                            messagesContainer.getChildren().add(messageBox);
+                            scrollPane.layout();
+                            scrollPane.setVvalue(1.0);
+                        }
                     });
                 }
 
