@@ -7,11 +7,15 @@
 
 <HBox spacing="0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatapp_java.ChatController" HBox.hgrow="ALWAYS">
     <VBox spacing="10" alignment="TOP_CENTER" prefWidth="50" style="-fx-background-color: #0e1531;">
-        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="20.0" maxWidth="20.0" minHeight="50.0" minWidth="50.0" style="-fx-background-color: #0e1531;" text="+" textFill="LIGHTGRAY">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Button>
+        <HBox spacing="10">
+            <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="20.0" maxWidth="20.0" minHeight="50.0" minWidth="50.0" style="-fx-background-color: #0e1531;" text="+" textFill="LIGHTGRAY">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Button>
+        </HBox>
+        <VBox fx:id="groupsContainer">
+        </VBox>
     </VBox>
     <VBox spacing="10" style="-fx-background-color: #0e1531; -fx-text-fill: #d3d3d3;" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
         <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="300.0" prefWidth="600.0" style="-fx-background: #0e1531; -fx-background-color: #0e1531; -fx-prompt-text-fill: #d3d3d3;" VBox.vgrow="ALWAYS">
