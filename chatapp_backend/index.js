@@ -73,14 +73,21 @@ wss.on("connection", (ws) => {
         case "join":
           currentUser = username;
           const messagesSnapshot = await getDocs(collection(db, "messages"));
-          let messages = [];
+          let messages = "";
           messagesSnapshot.forEach((doc) => {
             const messageArray = doc.data().messages;
             messageArray.forEach((msg) => {
-              messages.push(`${msg.time} - ${msg.message}\n`);
+              messages +=`${msg.time} - ${msg.message}&`;
             });
           });
-          ws.send(messages);
+          console.log(messages)
+          ws.send(messages, (error) => {
+            if (error) {
+                console.error("Error sending message:", error);
+            } else {
+                console.log("Message sent successfully.");
+            }
+        });
           broadcast(`${username} se ha unido a la conversación`);
           break;
         case "leave":

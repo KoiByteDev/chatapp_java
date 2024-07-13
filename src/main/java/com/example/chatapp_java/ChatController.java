@@ -52,9 +52,15 @@ public class ChatController {
                 public void onMessage(String messages) {
                     Platform.runLater(() -> {
 
-                        String[] messageArray = messages.split("\n");
+                        System.out.println("Messages before formatting:" + messages);
+
+                        String[] messageArray = messages.split("&");
+
+                        System.out.println("Messages after formatting:" + messageArray);
 
                         for (String message : messageArray) {
+                            System.out.println("Received message:" + message);
+
                             HBox messageBox = new HBox();
                             messageBox.setStyle("-fx-background-color: #0e1531; -fx-padding: 10; -fx-border-color: #0e1531; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-margin: 2; -fx-max-width: 100px;");
 
