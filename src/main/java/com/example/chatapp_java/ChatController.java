@@ -41,7 +41,6 @@ public class ChatController {
                 @Override
                 public void onOpen(ServerHandshake handshakedata) {
                     Platform.runLater(() -> {
-                        messagesContainer.getChildren().add(new Text("Conectado al servidor"));
                         webSocketClient.send("join," + username);
                     });
                 }
@@ -49,9 +48,11 @@ public class ChatController {
                 @Override
                 public void onMessage(String message) {
                     Platform.runLater(() -> {
-                        messagesContainer.getChildren().add(new Text(message));
+                        Text text = new Text(message);
+                        text.setStyle("-fx-fill: white;");
+                        messagesContainer.getChildren().add(text);
                         scrollPane.layout();
-                        scrollPane.setVvalue(1.0);  // Scroll to the bottom
+                        scrollPane.setVvalue(1.0);
                     });
                 }
 
