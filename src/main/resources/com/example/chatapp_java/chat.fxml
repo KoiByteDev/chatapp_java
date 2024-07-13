@@ -7,10 +7,10 @@
 
 <VBox spacing="10" style="-fx-background-color: #0e1531; -fx-text-fill: #d3d3d3;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatapp_java.ChatController">
     <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="300.0" prefWidth="600.0" style="-fx-background: #0e1531; -fx-background-color: #0e1531; -fx-prompt-text-fill: #d3d3d3;" VBox.vgrow="ALWAYS">
-        <VBox fx:id="messagesContainer" alignment="TOP_LEFT" prefHeight="33.0" prefWidth="598.0" spacing="10" style="-fx-padding: 10; -fx-border-color: #161d39; -fx-border-width: 1; -fx-background-color: #161d39; -fx-text-fill: #d3d3d3; -fx-prompt-text-fill: #d3d3d3;" />
+        <VBox fx:id="messagesContainer" alignment="TOP_LEFT" prefHeight="33.0" prefWidth="598.0" spacing="10" style="-fx-padding: 10; -fx-border-color: #161d39; -fx-border-width: 1; -fx-background-color: #161d39; -fx-text-fill: #d3d3d3;" />
     </ScrollPane>
     <HBox alignment="BOTTOM_CENTER" prefHeight="36.0" prefWidth="600.0">
-        <TextField fx:id="messageField" prefHeight="25.0" prefWidth="300.0" promptText="Escribe tu mensaje aquí..." style="-fx-background-color: #161d39; -fx-text-fill: #d3d3d3; -fx-prompt-text-fill: #d3d3d3;" HBox.hgrow="ALWAYS">
+        <TextField fx:id="messageField" prefHeight="25.0" prefWidth="300.0" promptText="Escribe tu mensaje aquí..." style="-fx-background-color: #161d39; -fx-text-fill: #d3d3d3;" HBox.hgrow="ALWAYS">
          <HBox.margin>
             <Insets bottom="8.0" left="10.0" />
          </HBox.margin></TextField>
