@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="300.0" prefWidth="360.0" spacing="10" style="-fx-background-color: #0e1531;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatapp_java.AuthController">
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="360.0" spacing="10" style="-fx-background-color: #0e1531;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatapp_java.AuthController">
   <TextField fx:id="emailField" promptText="Email" style="-fx-background-color: #161d39; -fx-text-fill: #d3d3d3;" visible="false">
       <opaqueInsets>
          <Insets />
