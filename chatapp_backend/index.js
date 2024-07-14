@@ -44,6 +44,7 @@ wss.on("connection", (ws) => {
           querySnapshot.forEach((doc) => {
             user = doc.data();
           });
+
           if (user) {
             ws.send("El nombre de usuario ya esta en uso.");
           } else {
@@ -55,7 +56,9 @@ wss.on("connection", (ws) => {
             });
             ws.send("Registro exitoso!");
           }
+          
           break;
+
         case "login":
           q = query(collection(db, "users"), where("username", "==", username));
           querySnapshot = await getDocs(q);
@@ -70,28 +73,35 @@ wss.on("connection", (ws) => {
             ws.send("Usuario o contraseña incorrectos");
           }
           break;
+
         case "join":
           currentUser = username;
           const messagesSnapshot = await getDocs(collection(db, "messages"));
           let messages = "";
+
           messagesSnapshot.forEach((doc) => {
             const messageArray = doc.data().messages;
             messageArray.forEach((msg) => {
               messages +=`${msg.time} - ${msg.message}&`;
             });
           });
-          console.log(messages)
+
           ws.send(messages, (error) => {
             if (error) {
                 console.error("Error sending message:", error);
             } else {
                 console.log("Message sent successfully.");
             }
-        });
+
+          });
+
           broadcast(`${username} se ha unido a la conversación`);
           break;
+
         case "leave":
           broadcast(`${username} ha abandonado la conversación`);
+          break;
+
         case "msg":
           const msg = message.split(',')[1];
           const currentTime = new Date();
@@ -115,6 +125,17 @@ wss.on("connection", (ws) => {
 
           broadcast(messageObject.time + " - " + messageObject.message);
           break;
+        case "searchForFrendPls🥺":
+          const searchTerm = message.split(',')[1];
+          q = query(collection(db, "users"), where("username", ">=", searchTerm), where("username", "<=", searchTerm + "\uf8ff"));
+          querySnapshot = await getDocs(q);
+          const foundUsers = [];
+          querySnapshot.forEach((doc) => {
+            foundUsers.push(doc.data().username);
+          });
+          ws.send("foundFriends😸:" + foundUsers.join(","));
+          break;
+
       }
     } catch (err) {
       console.log(err.message);
