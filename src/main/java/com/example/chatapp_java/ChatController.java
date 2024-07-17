@@ -46,6 +46,11 @@ public class ChatController {
     private String username;
 
     @FXML
+    private VBox groupsContainer;
+
+    private String currentChatPartner = null;
+
+    @FXML
     public void initialize() {
         connectToWebSocket();
     }
@@ -65,15 +70,18 @@ public class ChatController {
                 }
 
                 @Override
-                public void onMessage(String messages) {
+                public void onMessage(String message) {
                     Platform.runLater(() -> {
-                        if (messages.startsWith("foundFriends😸:")) {
-                            handleFriendsResponse(messages.substring(15));
+                        if (message.startsWith("foundFriends😸:")) {
+                            handleFriendsResponse(message.substring(15));
+                        } else if (message.startsWith("friendAdded,")) {
+                            handleFriendAdded(message.substring(12));
+                        } else if (message.startsWith("friendList,")) {
+                            handleFriendList(message.substring(11));
+                        } else if (message.startsWith("privateMsg,")) {
+                            handlePrivateMessage(message.substring(11));
                         } else {
-                            String[] messageArray = messages.split("&");
-                            for (String message : messageArray) {
-                                addMessageToChat(message);
-                            }
+                            handleChatMessage(message);
                         }
                     });
                 }
@@ -97,6 +105,88 @@ public class ChatController {
         }
     }
 
+    private void handleFriendList(String friendListData) {
+        groupsContainer.getChildren().clear();
+        List<String> friends = Arrays.asList(friendListData.split(","));
+        for (String friend : friends) {
+            addFriendToGroupList(friend);
+        }
+    }
+
+    private void addFriendToGroupList(String friendUsername) {
+        Button chatButton = new Button("Chat");
+        chatButton.setStyle("-fx-background-color: #0e1531; -fx-text-fill: lightgray;");
+        chatButton.setOnAction(e -> openPrivateChat(friendUsername));
+
+        Text text = new Text(friendUsername);
+        text.setStyle("-fx-fill: white;");
+
+        HBox friendBox = new HBox(text, chatButton);
+        friendBox.setStyle("-fx-background-color: #161d39; -fx-padding: 10; -fx-border-color: #161d39; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-margin: 2;");
+        friendBox.setMaxWidth(Double.MAX_VALUE);
+        friendBox.setMinHeight(Region.USE_PREF_SIZE);
+
+        groupsContainer.getChildren().add(friendBox);
+    }
+
+    private void handlePrivateMessage(String message) {
+        String[] parts = message.split(",", 2);
+        String sender = parts[0];
+        String chatMessage = parts[1];
+
+        if (sender.equals(currentChatPartner) || sender.equals(username)) {
+            addMessageToChat(chatMessage);
+        }
+    }
+
+    private void handleFriendAdded(String friendUsername) {
+        Button chatButton = new Button("Chat");
+        chatButton.setStyle("-fx-background-color: #0e1531; -fx-text-fill: lightgray;");
+        chatButton.setOnAction(e -> openPrivateChat(friendUsername));
+
+        Text text = new Text(friendUsername);
+        text.setStyle("-fx-fill: white;");
+
+        HBox friendBox = new HBox(text, chatButton);
+        friendBox.setStyle("-fx-background-color: #161d39; -fx-padding: 10; -fx-border-color: #161d39; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-margin: 2;");
+        friendBox.setMaxWidth(Double.MAX_VALUE);
+        friendBox.setMinHeight(Region.USE_PREF_SIZE);
+
+        groupsContainer.getChildren().add(friendBox);
+    }
+
+    private void addFriend(String friendUsername) {
+        webSocketClient.send("addFriend," + username + "," + friendUsername);
+    }
+
+    private void openPrivateChat(String friendUsername) {
+        currentChatPartner = friendUsername;
+        messagesContainer.getChildren().clear();
+        webSocketClient.send("fetchFriendMessages," + username + "," + friendUsername);
+        addMessageToChat("Iniciando chat privado con " + friendUsername);
+    }
+
+    private void handleChatMessage(String message) {
+        if (message.startsWith("messagesFor,")) {
+            String[] parts = message.split(",", 3);
+            System.out.println(message);
+            if (parts.length >= 3) {
+                String friendUsername = parts[1];
+                String chatMessages = parts[2];
+                String[] messageArray = chatMessages.split("&");
+                for (String msg : messageArray) {
+                    addMessageToChat(msg);
+                }
+            }
+        } else {
+            webSocketClient.send("fetchFriendList," + username);
+            String[] messageArray = message.split("&");
+            for (String msg : messageArray) {
+                addMessageToChat(msg);
+            }
+        }
+    }
+
     private void addMessageToChat(String message) {
         HBox messageBox = new HBox();
         messageBox.setStyle("-fx-background-color: #0e1531; -fx-padding: 10; -fx-border-color: #0e1531; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-margin: 2; -fx-max-width: 100px;");
@@ -117,8 +207,12 @@ public class ChatController {
     public void sendMessage() {
         String message = messageField.getText();
         if (!message.isEmpty() && webSocketClient != null && webSocketClient.isOpen()) {
-            String mensaje = username + ": " + message;
-            webSocketClient.send("msg," + mensaje);
+            if (currentChatPartner != null) {
+                webSocketClient.send("privateMsg," + username + "," + currentChatPartner + "," + message);
+            } else {
+                String mensaje = username + ": " + message;
+                webSocketClient.send("msg," + mensaje);
+            }
             Platform.runLater(() -> {
                 scrollPane.layout();
                 scrollPane.setVvalue(1.0);
@@ -211,7 +305,7 @@ public class ChatController {
         Button addButton = new Button("Añadir amigo");
         addButton.setStyle("-fx-background-color: #0e1531; -fx-text-fill: lightgray;");
         addButton.setOnAction(e -> {
-            System.out.println("Aun no esta implementado 🥺🥺🥺");
+            addFriend(name);
         });
 
         friendBox.getChildren().addAll(text, espacio, addButton);
@@ -219,5 +313,11 @@ public class ChatController {
         friendBox.setMinHeight(Region.USE_PREF_SIZE);
 
         friendList.getChildren().add(friendBox);
+    }
+
+    @FXML
+    public void toGeneral() {
+        webSocketClient.send("fetchMessages");
+        messagesContainer.getChildren().clear();
     }
 }

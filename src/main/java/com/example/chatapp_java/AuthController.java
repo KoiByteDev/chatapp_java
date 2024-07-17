@@ -82,8 +82,9 @@ public class AuthController {
         String password = passwordField.getText();
         if (isRegisterMode) {
             String email = emailField.getText();
+            User user = new User(username, email);
             if (!username.isEmpty() && !password.isEmpty() && !email.isEmpty()) {
-                webSocketClient.send("register," + username + "," + password + "," + email);
+                webSocketClient.send("register," + user.getUsername() + "," + password + "," + user.getEmail());
             } else {
                 showError("Por favor complete todos los campos.");
             }
@@ -126,6 +127,8 @@ public class AuthController {
 
     private void handleServerResponse(String message) {
         if (message.equals("Registro exitoso!") || message.equals("Inicio de sesión exitoso!")) {
+            openChatScreen();
+        } else if (message.startsWith("friendList,")) {
             openChatScreen();
         } else {
             showError(message);

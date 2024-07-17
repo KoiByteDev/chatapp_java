@@ -7,18 +7,15 @@
 
 <StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatapp_java.ChatController" HBox.hgrow="ALWAYS">
     <HBox spacing="0" HBox.hgrow="ALWAYS">
-        <VBox spacing="10" alignment="TOP_CENTER" prefWidth="50" style="-fx-background-color: #0e1531;">
-            <HBox spacing="10">
-                <VBox prefWidth="50">
-
-                </VBox>
-                <Button fx:id="addFriendsButton" onAction="#openFriendsMenu" alignment="CENTER" contentDisplay="CENTER" maxHeight="20.0" maxWidth="20.0" minHeight="50.0" minWidth="50.0" style="-fx-background-color: #0e1531;" text="+" textFill="LIGHTGRAY">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Button>
-            </HBox>
-            <VBox fx:id="groupsContainer">
+        <VBox spacing="10" alignment="TOP_CENTER" prefWidth="150" style="-fx-background-color: #0e1531;">
+            <Button fx:id="addFriendsButton" onAction="#openFriendsMenu" alignment="CENTER" contentDisplay="CENTER" maxHeight="20.0" maxWidth="20.0" minHeight="50.0" minWidth="50.0" style="-fx-background-color: #0e1531;" text="+" textFill="LIGHTGRAY">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Button>
+            <Button fx:id="generalChatButton" onAction="#toGeneral" style="-fx-fill: white;">General</Button>
+            <VBox fx:id="groupsContainer" spacing="10" alignment="TOP_LEFT">
+                <Text style="-fx-fill: white;">No has añadido a ningun amigo. Presiona el botón arriba para añadir!</Text>
             </VBox>
         </VBox>
         <VBox spacing="10" style="-fx-background-color: #0e1531; -fx-text-fill: #d3d3d3;" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
