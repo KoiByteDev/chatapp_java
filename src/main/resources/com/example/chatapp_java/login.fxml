@@ -25,6 +25,6 @@
          <Insets />
       </opaqueInsets></PasswordField>
   <Label fx:id="errorLabel" textFill="red" visible="false" />
-  <Button fx:id="authButton" onAction="#handleAuthAction" style="-fx-background-color: d3d3d3;" text="Iniciar Sesion" />
+  <Button fx:id="authButton" onAction="#handleAuthAction" style="-fx-background-color: #d3d3d3;" text="Iniciar Sesion" />
   <Text fx:id="switchAuthText" onMouseClicked="#switchAuthMode" style="-fx-underline: true; -fx-fill: #d3d3d3;" text="No tiene una cuenta? Crear Cuenta" />
 </VBox>
