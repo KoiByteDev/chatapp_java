@@ -15,7 +15,7 @@
             </Button>
             <Button fx:id="generalChatButton" onAction="#toGeneral" style="-fx-fill: white;">General</Button>
             <VBox fx:id="groupsContainer" spacing="10" alignment="TOP_LEFT">
-                <Text style="-fx-fill: white;">No has añadido a ningun amigo. Presiona el botón arriba para añadir!</Text>
+                
             </VBox>
         </VBox>
         <VBox spacing="10" style="-fx-background-color: #0e1531; -fx-text-fill: #d3d3d3;" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">

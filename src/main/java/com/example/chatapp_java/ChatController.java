@@ -169,7 +169,6 @@ public class ChatController {
     private void handleChatMessage(String message) {
         if (message.startsWith("messagesFor,")) {
             String[] parts = message.split(",", 3);
-            System.out.println(message);
             if (parts.length >= 3) {
                 String friendUsername = parts[1];
                 String chatMessages = parts[2];

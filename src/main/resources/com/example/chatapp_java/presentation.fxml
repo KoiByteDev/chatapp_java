@@ -9,11 +9,11 @@
    <children>
       <ImageView fitHeight="91.0" fitWidth="92.0" layoutX="36.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="C:\Users\Evaristo Alvarez S\IdeaProjects\chatapp_java\src\main\resources\assets\Logo UTP.png" />
+            <Image url="@../assets/Logo UTP.png" />
          </image></ImageView>
       <ImageView fitHeight="91.0" fitWidth="119.0" layoutX="473.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="C:\Users\Evaristo Alvarez S\IdeaProjects\chatapp_java\src\main\resources\assets\Logo FISC.png" />
+            <Image url="@../assets/Logo FISC.png" />
          </image>
       </ImageView>
       <Text fill="LIGHTGRAY" layoutX="265.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Integrantes:" textAlignment="CENTER">

@@ -226,7 +226,11 @@ wss.on("connection", (ws) => {
             const userDoc = userQuerySnapshot.docs[0];
             const userData = userDoc.data();
             const friendList = userData.friends || [];
-            ws.send("friendList," + friendList.join(","));
+            if (friendList.length === 0) {
+              console.log("no frend faund unu")
+            } else {
+              ws.send("friendList," + friendList.join(","));
+            }
           } else {
             ws.send("User not found");
           }
