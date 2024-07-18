@@ -7,46 +7,6 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0e1531;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatapp_java.IntroController">
    <children>
-      <TextField alignment="CENTER" layoutX="165.0" layoutY="18.0" prefHeight="35.0" prefWidth="278.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="Universidad Tecnológica de Panamá">
-         <font>
-            <Font size="16.0" />
-         </font></TextField>
-      <TextField alignment="CENTER" layoutX="153.0" layoutY="46.0" prefHeight="35.0" prefWidth="295.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="Facultad de Sistemas Computacionales">
-         <font>
-            <Font size="16.0" />
-         </font></TextField>
-      <TextField alignment="CENTER" layoutX="185.0" layoutY="76.0" prefHeight="35.0" prefWidth="231.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="Lic. en Ing. de Software">
-         <font>
-            <Font size="16.0" />
-         </font></TextField>
-      <TextField alignment="CENTER" layoutX="214.0" layoutY="111.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="Grupo: 1SF122">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <TextField alignment="CENTER" layoutX="194.0" layoutY="185.0" prefHeight="30.0" prefWidth="212.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="Evaristo Álvarez, 8-1005-1928">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <TextField alignment="CENTER" layoutX="201.0" layoutY="210.0" prefHeight="30.0" prefWidth="198.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="Diego Gordón, 8-1017-349">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <TextField alignment="CENTER" layoutX="174.0" layoutY="161.0" prefHeight="30.0" prefWidth="252.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="Alejandro Mendoza, 8-1005-1104">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <TextField alignment="CENTER" layoutX="201.0" layoutY="235.0" prefHeight="30.0" prefWidth="198.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="Alexis Miranda, 9-765-1202">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <TextField alignment="CENTER" layoutX="201.0" layoutY="265.0" prefHeight="30.0" prefWidth="198.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="Profesor: Rodrigo Yángüez">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <TextField alignment="CENTER" layoutX="214.0" layoutY="288.0" style="-fx-text-fill: #d3d3d3; -fx-background-color: #0e1531;" text="18/07/2024">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
       <ImageView fitHeight="91.0" fitWidth="92.0" layoutX="36.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="C:\Users\Evaristo Alvarez S\IdeaProjects\chatapp_java\src\main\resources\assets\Logo UTP.png" />
@@ -65,5 +25,55 @@
          <font>
             <Font size="14.0" />
          </font></Button>
+      <Text fill="LIGHTGRAY" layoutX="173.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Universidad Tecnológica de Panamá">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGRAY" layoutX="163.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Facultad de Sistemas Computacionales">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGRAY" layoutX="218.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lic. en Ing. de Software">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGRAY" layoutX="254.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grupo: 1SF122">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGRAY" layoutX="195.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alejandro Mendoza, 8-1005-1104">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGRAY" layoutX="207.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evaristo Álvarez, 8-1005-1928">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGRAY" layoutX="215.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diego Gordón, 8-1017-349">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGRAY" layoutX="213.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alexis Miranda, 9-765-1202">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGRAY" layoutX="218.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profesor: Rodrigo Yángüez">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGRAY" layoutX="265.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="18/07/2024">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
