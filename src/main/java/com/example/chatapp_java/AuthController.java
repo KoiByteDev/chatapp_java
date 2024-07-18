@@ -82,8 +82,9 @@ public class AuthController {
         String password = passwordField.getText();
         if (isRegisterMode) {
             String email = emailField.getText();
+            User user = new User(username, email);
             if (!username.isEmpty() && !password.isEmpty() && !email.isEmpty()) {
-                webSocketClient.send("register," + username + "," + password + "," + email);
+                webSocketClient.send("register," + user.getUsername() + "," + password + "," + user.getEmail());
             } else {
                 showError("Por favor complete todos los campos.");
             }
@@ -114,7 +115,7 @@ public class AuthController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("chat.fxml"));
             Stage stage = (Stage) authButton.getScene().getWindow();
-            Scene scene = new Scene(fxmlLoader.load(), 600, 368);
+            Scene scene = new Scene(fxmlLoader.load(), 854, 480);
             ChatController chatController = fxmlLoader.getController();
             chatController.setUsername(usernameField.getText());
             stage.setScene(scene);
@@ -126,6 +127,8 @@ public class AuthController {
 
     private void handleServerResponse(String message) {
         if (message.equals("Registro exitoso!") || message.equals("Inicio de sesión exitoso!")) {
+            openChatScreen();
+        } else if (message.startsWith("friendList,")) {
             openChatScreen();
         } else {
             showError(message);
