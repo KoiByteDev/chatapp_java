@@ -176,7 +176,11 @@ wss.on("connection", (ws) => {
           querySnapshot.forEach((doc) => {
             foundUsers.push(doc.data().username);
           });
-          ws.send("foundFriends😸:" + foundUsers.join(","));
+          if (foundUsers) {
+            ws.send("foundFriends😸:" + foundUsers.join(","));
+          } else {
+            ws.send("nofrendxd");
+          }
           break;
 
         case "addFriend":
@@ -214,7 +218,11 @@ wss.on("connection", (ws) => {
             });
           }
 
-          ws.send(`messagesFor,${rec},${privMsgs}`);
+          if (privMsgs) {
+            ws.send(`messagesFor,${rec},${privMsgs}`);
+          } else {
+            ws.send(`messagesFor,${rec},Envia un primer mensaje!`);
+          }
           break;
 
         case "fetchFriendList":

@@ -80,6 +80,8 @@ public class ChatController {
                             handleFriendList(message.substring(11));
                         } else if (message.startsWith("privateMsg,")) {
                             handlePrivateMessage(message.substring(11));
+                        } else if (message.startsWith("nofrendxd")) {
+                            handleFriendsResponse("");
                         } else {
                             handleChatMessage(message);
                         }
@@ -282,16 +284,16 @@ public class ChatController {
         friendList.getChildren().clear();
         List<String> foundUsers = Arrays.asList(friendsData.split(","));
         
-        if (foundUsers.isEmpty()) {
-            addFriendToList("No se encontraron usuarios (Skill Issue 👻👻👻🔥🙏😹)");
+        if (friendsData.isEmpty()) {
+            addFriendToList("No se encontraron usuarios (Skill Issue 👻👻👻🔥🙏😹)", false);
         } else {
             for (String name : foundUsers) {
-                addFriendToList(name);
+                addFriendToList(name, true);
             }
         }
     }
 
-    private void addFriendToList(String name) {
+    private void addFriendToList(String name, Boolean found) {
         HBox friendBox = new HBox();
         friendBox.setStyle("-fx-background-color: #161d39; -fx-padding: 10; -fx-border-color: #161d39; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-margin: 2;");
 
@@ -301,17 +303,25 @@ public class ChatController {
         HBox espacio = new HBox();
         HBox.setHgrow(espacio, Priority.ALWAYS);
 
-        Button addButton = new Button("Añadir amigo");
-        addButton.setStyle("-fx-background-color: #0e1531; -fx-text-fill: lightgray;");
-        addButton.setOnAction(e -> {
-            addFriend(name);
-        });
+        if (found) {
+            Button addButton = new Button("Añadir amigo");
+            addButton.setStyle("-fx-background-color: #0e1531; -fx-text-fill: lightgray;");
+            addButton.setOnAction(e -> {
+                addFriend(name);
+            });
 
-        friendBox.getChildren().addAll(text, espacio, addButton);
-        friendBox.setMaxWidth(Double.MAX_VALUE);
-        friendBox.setMinHeight(Region.USE_PREF_SIZE);
+            friendBox.getChildren().addAll(text, espacio, addButton);
+            friendBox.setMaxWidth(Double.MAX_VALUE);
+            friendBox.setMinHeight(Region.USE_PREF_SIZE);
 
-        friendList.getChildren().add(friendBox);
+            friendList.getChildren().add(friendBox);
+        } else {
+            friendBox.getChildren().addAll(text, espacio);
+            friendBox.setMaxWidth(Double.MAX_VALUE);
+            friendBox.setMinHeight(Region.USE_PREF_SIZE);
+
+            friendList.getChildren().add(friendBox);
+        }
     }
 
     @FXML
