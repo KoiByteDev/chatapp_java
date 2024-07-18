@@ -5,11 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import org.java_websocket.client.WebSocketClient;
 
 import java.io.IOException;
 
 public class IntroController {
+
+    @FXML
+    private ImageView imView;
 
     @FXML
     private Button iniciarButton;
